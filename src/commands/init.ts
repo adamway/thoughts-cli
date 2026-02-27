@@ -28,7 +28,7 @@ interface InitOptions {
   profile?: string;
 }
 
-function sanitizeDirectoryName(name: string): string {
+export function sanitizeDirectoryName(name: string): string {
   return name.replace(/[^a-zA-Z0-9_-]/g, "_");
 }
 
@@ -135,7 +135,7 @@ async function selectFromList(
   }
 }
 
-function generateClaudeMd(
+export function generateClaudeMd(
   thoughtsRepo: string,
   reposDir: string,
   repoName: string,
@@ -200,7 +200,7 @@ These files will be automatically synchronized with your thoughts repository whe
 `;
 }
 
-function setupGitHooks(repoPath: string): { updated: string[] } {
+export function setupGitHooks(repoPath: string): { updated: string[] } {
   const updated: string[] = [];
   // Use git rev-parse to find the common git directory for hooks (handles worktrees)
   // In worktrees, hooks are stored in the common git directory, not the worktree-specific one
@@ -777,10 +777,11 @@ export async function thoughtsInitCommand(options: InitOptions): Promise<void> {
           cwd: expandedRepo,
         });
         console.log(chalk.green("Pulled latest thoughts from remote"));
-      } catch (error) {
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : String(error);
         console.warn(
           chalk.yellow("Warning: Could not pull latest thoughts:"),
-          error.message,
+          msg,
         );
       }
     } catch {

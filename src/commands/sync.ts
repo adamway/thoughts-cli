@@ -59,8 +59,8 @@ function syncThoughts(thoughtsRepo: string, message: string): void {
         stdio: "pipe",
         cwd: expandedRepo,
       });
-    } catch (error) {
-      const errorStr = error.toString();
+    } catch (error: unknown) {
+      const errorStr = String(error);
       if (
         errorStr.includes("CONFLICT (") ||
         errorStr.includes("Automatic merge failed") ||
@@ -83,11 +83,10 @@ function syncThoughts(thoughtsRepo: string, message: string): void {
         );
         process.exit(1);
       } else {
-        // If pull fails for other reasons, show warning but continue
-        // This handles cases like no upstream, network issues, etc.
+        const msg = error instanceof Error ? error.message : String(error);
         console.warn(
           chalk.yellow("Warning: Could not pull latest changes:"),
-          error.message,
+          msg,
         );
       }
     }

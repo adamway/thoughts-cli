@@ -17,6 +17,7 @@ This tool has **zero dependencies** on HumanLayer SDK, MCP, or any cloud API —
 - `src/commands/profile/` — Profile CRUD: create, list, show, delete.
 
 ### Key Concepts
+
 - **Thoughts repo**: A separate git repository that stores developer notes/thoughts.
 - **Symlinks**: Each code repo gets a `thoughts/` symlink pointing into the thoughts repo.
 - **Git hooks**: Pre-commit hook blocks accidental commits of `thoughts/` content. Post-commit hook auto-syncs.
@@ -26,6 +27,7 @@ This tool has **zero dependencies** on HumanLayer SDK, MCP, or any cloud API —
 ## Development Commands
 
 ### Quick Actions
+
 - `make check` — Run all quality checks (format + lint + test + build)
 - `make test` — Run tests
 - `make build` — Build TypeScript source
@@ -33,12 +35,14 @@ This tool has **zero dependencies** on HumanLayer SDK, MCP, or any cloud API —
 - `make format` — Format code with Prettier
 
 ### Build & Run
+
 - `npm install` — Install dependencies
 - `npm run build` — Build with tsup (output: `dist/index.js`)
 - `npm run dev` — Build and run the CLI
 - `./dist/index.js --help` — Run built CLI
 
 ### Testing
+
 - `npm run test` — Run vitest
 - `npm run test:watch` — Run vitest in watch mode
 
@@ -54,6 +58,7 @@ This tool has **zero dependencies** on HumanLayer SDK, MCP, or any cloud API —
 ## Development Conventions
 
 ### TODO Annotations
+
 - `TODO(0)`: Critical - never merge
 - `TODO(1)`: High - architectural flaws, major bugs
 - `TODO(2)`: Medium - minor bugs, missing features

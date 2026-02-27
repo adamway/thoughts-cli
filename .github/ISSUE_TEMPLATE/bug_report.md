@@ -1,9 +1,9 @@
 ---
 name: Bug Report
 about: Report a bug or unexpected behavior
-title: '[Bug]: '
-labels: ['bug']
-assignees: ''
+title: "[Bug]: "
+labels: ["bug"]
+assignees: ""
 ---
 
 ## Current Behavior / Issue
@@ -25,11 +25,13 @@ assignees: ''
 <!-- Provide additional context that might be relevant -->
 
 **Environment:**
+
 - Version:
 - OS:
 - Node version:
 
 **Related Issues/PRs:**
+
 <!-- Link to any related issues or pull requests -->
 
 ## Additional Information
