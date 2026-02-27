@@ -1,0 +1,40 @@
+{
+  "name": "thoughts-cli",
+  "version": "0.1.0",
+  "description": "Manage developer thoughts and notes across repositories",
+  "type": "module",
+  "bin": {
+    "thoughts-cli": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "npm run build && ./dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm run lint && npm run test && npm run build"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^14.0.0",
+    "dotenv": "^16.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "prettier": "^3.5.3",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "license": "Apache-2.0"
+}
