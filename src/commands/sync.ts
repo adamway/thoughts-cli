@@ -78,7 +78,7 @@ function syncThoughts(thoughtsRepo: string, message: string): void {
         );
         console.error(
           chalk.red(
-            'Then run "git rebase --continue" and "thoughts-cli sync" again',
+            'Then run "git rebase --continue" and "thoughts sync" again',
           ),
         );
         process.exit(1);
@@ -233,7 +233,7 @@ export async function thoughtsSyncCommand(options: SyncOptions): Promise<void> {
     if (!config) {
       console.error(
         chalk.red(
-          'Error: Thoughts not configured. Run "thoughts-cli init" first.',
+          'Error: Thoughts not configured. Run "thoughts init" first.',
         ),
       );
       process.exit(1);
@@ -247,7 +247,7 @@ export async function thoughtsSyncCommand(options: SyncOptions): Promise<void> {
       console.error(
         chalk.red("Error: Thoughts not initialized for this repository."),
       );
-      console.error('Run "thoughts-cli init" to set up thoughts.');
+      console.error('Run "thoughts init" to set up thoughts.');
       process.exit(1);
     }
 

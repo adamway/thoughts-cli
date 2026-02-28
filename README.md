@@ -48,10 +48,10 @@ npm run build
 npm link
 ```
 
-You can now use `thoughts-cli` from anywhere:
+You can now use `thoughts` from anywhere:
 
 ```bash
-thoughts-cli --help
+thoughts --help
 ```
 
 ### Run without installing globally
@@ -78,7 +78,7 @@ Run `init` inside any git repository. The first time you run it, you'll be walke
 
 ```bash
 cd ~/code/my-project
-thoughts-cli init
+thoughts init
 ```
 
 This will:
@@ -105,7 +105,7 @@ echo "# General TODO" > thoughts/global/<your-username>/todo.md
 ### Sync manually
 
 ```bash
-thoughts-cli sync
+thoughts sync
 ```
 
 This commits and pushes changes in your thoughts repo and rebuilds the searchable index. Syncing also happens automatically after each code commit via the post-commit hook.
@@ -113,7 +113,7 @@ This commits and pushes changes in your thoughts repo and rebuilds the searchabl
 ### Check status
 
 ```bash
-thoughts-cli status
+thoughts status
 ```
 
 ## Re-linking to an Existing Thoughts Repository
@@ -136,7 +136,7 @@ For the first code repository, run `init`. If you don't yet have a config file, 
 
 ```bash
 cd ~/code/my-first-project
-thoughts-cli init
+thoughts init
 ```
 
 When prompted:
@@ -151,7 +151,7 @@ For each additional code repository, run `init` and select the matching existing
 
 ```bash
 cd ~/code/another-project
-thoughts-cli init
+thoughts init
 ```
 
 The interactive prompt will list all existing directories in your thoughts repo — just select the right one.
@@ -162,7 +162,7 @@ Use the `--directory` flag to skip prompts. The directory must already exist in 
 
 ```bash
 cd ~/code/my-project
-thoughts-cli init --directory my-project
+thoughts init --directory my-project
 ```
 
 ### Batch re-linking
@@ -174,9 +174,9 @@ To re-link many repos at once, script it:
 ls ~/thoughts/repos/
 
 # Re-link each one
-cd ~/code/project-a && thoughts-cli init --directory project-a
-cd ~/code/project-b && thoughts-cli init --directory project-b
-cd ~/code/project-c && thoughts-cli init --directory project-c
+cd ~/code/project-a && thoughts init --directory project-a
+cd ~/code/project-b && thoughts init --directory project-b
+cd ~/code/project-c && thoughts init --directory project-c
 ```
 
 ### Re-linking with profiles
@@ -185,11 +185,11 @@ If you use profiles (e.g. separate work and personal thoughts repos):
 
 ```bash
 # Re-create the profile first
-thoughts-cli profile create work --repo ~/thoughts-work --repos-dir repos --global-dir global
+thoughts profile create work --repo ~/thoughts-work --repos-dir repos --global-dir global
 
 # Then init with the profile
 cd ~/code/work-project
-thoughts-cli init --profile work --directory work-project
+thoughts init --profile work --directory work-project
 ```
 
 ## Profiles
@@ -199,43 +199,43 @@ Profiles let you maintain separate thoughts repositories for different contexts 
 ### Create a profile
 
 ```bash
-thoughts-cli profile create work
+thoughts profile create work
 # Interactive: prompts for repo path and directory names
 
 # Or non-interactive:
-thoughts-cli profile create work --repo ~/thoughts-work --repos-dir repos --global-dir global
+thoughts profile create work --repo ~/thoughts-work --repos-dir repos --global-dir global
 ```
 
 ### Use a profile when initializing
 
 ```bash
 cd ~/code/work-project
-thoughts-cli init --profile work
+thoughts init --profile work
 ```
 
 ### Manage profiles
 
 ```bash
-thoughts-cli profile list
-thoughts-cli profile show work
-thoughts-cli profile delete work
+thoughts profile list
+thoughts profile show work
+thoughts profile delete work
 ```
 
 ## Command Reference
 
 | Command                              | Description                                |
 | ------------------------------------ | ------------------------------------------ |
-| `thoughts-cli init`                  | Initialize thoughts for the current repo   |
-| `thoughts-cli uninit`                | Remove thoughts setup (content stays safe) |
-| `thoughts-cli sync`                  | Manually sync and rebuild searchable index |
-| `thoughts-cli status`                | Show thoughts repo and sync status         |
-| `thoughts-cli config`                | View configuration                         |
-| `thoughts-cli config --edit`         | Open config in `$EDITOR`                   |
-| `thoughts-cli config --json`         | Output config as JSON                      |
-| `thoughts-cli profile create <name>` | Create a new profile                       |
-| `thoughts-cli profile list`          | List all profiles                          |
-| `thoughts-cli profile show <name>`   | Show profile details                       |
-| `thoughts-cli profile delete <name>` | Delete a profile                           |
+| `thoughts init`                  | Initialize thoughts for the current repo   |
+| `thoughts uninit`                | Remove thoughts setup (content stays safe) |
+| `thoughts sync`                  | Manually sync and rebuild searchable index |
+| `thoughts status`                | Show thoughts repo and sync status         |
+| `thoughts config`                | View configuration                         |
+| `thoughts config --edit`         | Open config in `$EDITOR`                   |
+| `thoughts config --json`         | Output config as JSON                      |
+| `thoughts profile create <name>` | Create a new profile                       |
+| `thoughts profile list`          | List all profiles                          |
+| `thoughts profile show <name>`   | Show profile details                       |
+| `thoughts profile delete <name>` | Delete a profile                           |
 
 ### Common flags
 

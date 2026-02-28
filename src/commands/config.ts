@@ -31,7 +31,7 @@ export async function thoughtsConfigCommand(
 
     if (!config) {
       console.error(chalk.red("No thoughts configuration found."));
-      console.error('Run "thoughts-cli init" to create one.');
+      console.error('Run "thoughts init" to create one.');
       process.exit(1);
     }
 
@@ -89,7 +89,7 @@ export async function thoughtsConfigCommand(
 
     console.log("");
     console.log(
-      chalk.gray("To edit configuration, run: thoughts-cli config --edit"),
+      chalk.gray("To edit configuration, run: thoughts config --edit"),
     );
   } catch (error) {
     console.error(chalk.red(`Error showing thoughts config: ${error}`));

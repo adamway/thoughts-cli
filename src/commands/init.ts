@@ -151,7 +151,7 @@ export function generateClaudeMd(
   return `# Thoughts Directory Structure
 
 This directory contains developer thoughts and notes for the ${repoName} repository.
-It is managed by the thoughts-cli system and should not be committed to the code repository.
+It is managed by the thoughts system and should not be committed to the code repository.
 
 ## Structure
 
@@ -169,7 +169,7 @@ The \`searchable/\` directory contains hard links to all thoughts files accessib
 **IMPORTANT**:
 - Files in \`thoughts/searchable/\` are hard links to the original files (editing either updates both)
 - For clarity and consistency, always reference files by their canonical path (e.g., \`thoughts/${user}/todo.md\`, not \`thoughts/searchable/${user}/todo.md\`)
-- The \`searchable/\` directory is automatically updated when you run \`thoughts-cli sync\`
+- The \`searchable/\` directory is automatically updated when you run \`thoughts sync\`
 
 This design ensures that:
 1. Search tools can find all your thoughts content easily
@@ -195,8 +195,8 @@ These files will be automatically synchronized with your thoughts repository whe
 
 - Never commit the thoughts/ directory to your code repository
 - The git pre-commit hook will prevent accidental commits
-- Use \`thoughts-cli sync\` to manually sync changes
-- Use \`thoughts-cli status\` to see sync status
+- Use \`thoughts sync\` to manually sync changes
+- Use \`thoughts status\` to see sync status
 `;
 }
 
@@ -233,7 +233,7 @@ export function setupGitHooks(repoPath: string): { updated: string[] } {
   // Pre-commit hook
   const preCommitPath = path.join(hooksDir, "pre-commit");
   const preCommitContent = `#!/bin/bash
-# thoughts-cli protection - prevent committing thoughts directory
+# thoughts protection - prevent committing thoughts directory
 # Version: ${HOOK_VERSION}
 
 if git diff --cached --name-only | grep -q "^thoughts/"; then
@@ -252,7 +252,7 @@ fi
   // Post-commit hook
   const postCommitPath = path.join(hooksDir, "post-commit");
   const postCommitContent = `#!/bin/bash
-# thoughts-cli auto-sync
+# thoughts auto-sync
 # Version: ${HOOK_VERSION}
 
 # Check if we're in a worktree
@@ -265,7 +265,7 @@ fi
 COMMIT_MSG=$(git log -1 --pretty=%B)
 
 # Auto-sync thoughts after each commit (only in non-worktree repos)
-thoughts-cli sync --message "Auto-sync with commit: $COMMIT_MSG" >/dev/null 2>&1 &
+thoughts sync --message "Auto-sync with commit: $COMMIT_MSG" >/dev/null 2>&1 &
 
 # Call any existing post-commit hook
 if [ -f "${postCommitPath}.old" ]; then
@@ -278,7 +278,7 @@ fi
     if (!fs.existsSync(hookPath)) return true;
     const content = fs.readFileSync(hookPath, "utf8");
     if (
-      !content.includes("thoughts-cli") &&
+      !content.includes("thoughts") &&
       !content.includes("HumanLayer thoughts")
     )
       return false; // Not our hook
@@ -295,13 +295,13 @@ fi
   if (fs.existsSync(preCommitPath)) {
     const content = fs.readFileSync(preCommitPath, "utf8");
     if (
-      (!content.includes("thoughts-cli") &&
+      (!content.includes("thoughts") &&
         !content.includes("HumanLayer thoughts")) ||
       hookNeedsUpdate(preCommitPath)
     ) {
-      // Only backup non-thoughts-cli hooks to prevent recursion
+      // Only backup non-thoughts hooks to prevent recursion
       if (
-        !content.includes("thoughts-cli") &&
+        !content.includes("thoughts") &&
         !content.includes("HumanLayer thoughts")
       ) {
         fs.renameSync(preCommitPath, `${preCommitPath}.old`);
@@ -315,13 +315,13 @@ fi
   if (fs.existsSync(postCommitPath)) {
     const content = fs.readFileSync(postCommitPath, "utf8");
     if (
-      (!content.includes("thoughts-cli") &&
+      (!content.includes("thoughts") &&
         !content.includes("HumanLayer thoughts")) ||
       hookNeedsUpdate(postCommitPath)
     ) {
-      // Only backup non-thoughts-cli hooks to prevent recursion
+      // Only backup non-thoughts hooks to prevent recursion
       if (
-        !content.includes("thoughts-cli") &&
+        !content.includes("thoughts") &&
         !content.includes("HumanLayer thoughts")
       ) {
         fs.renameSync(postCommitPath, `${postCommitPath}.old`);
@@ -471,7 +471,7 @@ export async function thoughtsInitCommand(options: InitOptions): Promise<void> {
         console.error("");
         console.error(chalk.yellow("Create a profile first:"));
         console.error(
-          chalk.gray(`  thoughts-cli profile create ${options.profile}`),
+          chalk.gray(`  thoughts profile create ${options.profile}`),
         );
         process.exit(1);
       }
@@ -838,7 +838,7 @@ export async function thoughtsInitCommand(options: InitOptions): Promise<void> {
     console.log("");
     console.log("Next steps:");
     console.log(
-      `  1. Run ${chalk.cyan("thoughts-cli sync")} to create the searchable index`,
+      `  1. Run ${chalk.cyan("thoughts sync")} to create the searchable index`,
     );
     console.log(
       `  2. Create markdown files in ${chalk.cyan(`thoughts/${config.user}/`)} for your notes`,
@@ -847,7 +847,7 @@ export async function thoughtsInitCommand(options: InitOptions): Promise<void> {
       `  3. Your thoughts will sync automatically when you commit code`,
     );
     console.log(
-      `  4. Run ${chalk.cyan("thoughts-cli status")} to check sync status`,
+      `  4. Run ${chalk.cyan("thoughts status")} to check sync status`,
     );
   } catch (error) {
     console.error(chalk.red(`Error during thoughts init: ${error}`));

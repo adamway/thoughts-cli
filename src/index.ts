@@ -13,7 +13,7 @@ import { profileDeleteCommand } from "./commands/profile/delete.js";
 const program = new Command();
 
 program
-  .name("thoughts-cli")
+  .name("thoughts")
   .description("Manage developer thoughts and notes")
   .version(process.env.PACKAGE_VERSION || "0.0.0");
 

@@ -42,7 +42,7 @@ export async function profileCreateCommand(
     if (!config) {
       console.error(chalk.red("Error: Thoughts not configured."));
       console.error(
-        'Run "thoughts-cli init" first to set up the base configuration.',
+        'Run "thoughts init" first to set up the base configuration.',
       );
       process.exit(1);
     }
@@ -138,7 +138,7 @@ export async function profileCreateCommand(
     console.log(chalk.gray("Next steps:"));
     console.log(
       chalk.gray(
-        `  1. Run "thoughts-cli init --profile ${sanitizedName}" in a repository`,
+        `  1. Run "thoughts init --profile ${sanitizedName}" in a repository`,
       ),
     );
     console.log(

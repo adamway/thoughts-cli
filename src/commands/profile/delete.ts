@@ -63,7 +63,7 @@ export async function profileDeleteCommand(
       console.error("");
       console.error(chalk.yellow("Options:"));
       console.error(
-        chalk.gray('  1. Run "thoughts-cli uninit" in each repository'),
+        chalk.gray('  1. Run "thoughts uninit" in each repository'),
       );
       console.error(
         chalk.gray(

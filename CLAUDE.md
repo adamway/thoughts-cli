@@ -10,7 +10,7 @@ This tool has **zero dependencies** on HumanLayer SDK, MCP, or any cloud API —
 
 ## Architecture
 
-- `src/index.ts` — CLI entry point using Commander.js. Commands are registered at the top level (`thoughts-cli init`, not nested under a subcommand).
+- `src/index.ts` — CLI entry point using Commander.js. Commands are registered at the top level (`thoughts init`, not nested under a subcommand).
 - `src/config.ts` — Config file I/O. Reads/writes `~/.config/humanlayer/humanlayer.json` (XDG_CONFIG_HOME aware).
 - `src/thoughtsConfig.ts` — Thoughts-specific config logic: profile resolution, repo mapping, directory management.
 - `src/commands/` — Command implementations: init, uninit, sync, status, config.

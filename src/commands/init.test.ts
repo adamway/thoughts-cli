@@ -146,7 +146,7 @@ describe("init.ts helpers", () => {
       expect(postCommitStats.mode & 0o111).toBeGreaterThan(0);
     });
 
-    it("should include thoughts-cli in hook content", () => {
+    it("should include thoughts in hook content", () => {
       setupGitHooks(gitRepo);
 
       const hooksDir = path.join(gitRepo, ".git", "hooks");
@@ -159,8 +159,8 @@ describe("init.ts helpers", () => {
         "utf8",
       );
 
-      expect(preCommit).toContain("thoughts-cli");
-      expect(postCommit).toContain("thoughts-cli");
+      expect(preCommit).toContain("thoughts");
+      expect(postCommit).toContain("thoughts");
     });
 
     it("should include version markers in hooks", () => {
@@ -179,7 +179,7 @@ describe("init.ts helpers", () => {
       const hooksDir = path.join(gitRepo, ".git", "hooks");
       fs.mkdirSync(hooksDir, { recursive: true });
 
-      // Create an existing pre-commit hook that's not from thoughts-cli
+      // Create an existing pre-commit hook that's not from thoughts
       fs.writeFileSync(
         path.join(hooksDir, "pre-commit"),
         "#!/bin/bash\necho 'my custom hook'",
@@ -201,7 +201,7 @@ describe("init.ts helpers", () => {
         path.join(hooksDir, "pre-commit"),
         "utf8",
       );
-      expect(newHook).toContain("thoughts-cli");
+      expect(newHook).toContain("thoughts");
     });
 
     it("should not re-create hooks if already up to date", () => {

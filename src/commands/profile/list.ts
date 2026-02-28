@@ -36,7 +36,7 @@ export async function profileListCommand(options: ListOptions): Promise<void> {
       console.log(chalk.gray("No profiles configured."));
       console.log("");
       console.log(
-        chalk.gray("Create a profile with: thoughts-cli profile create <name>"),
+        chalk.gray("Create a profile with: thoughts profile create <name>"),
       );
     } else {
       console.log(

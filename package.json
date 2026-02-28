@@ -4,7 +4,7 @@
   "description": "Manage developer thoughts and notes across repositories",
   "type": "module",
   "bin": {
-    "thoughts-cli": "dist/index.js"
+    "thoughts": "dist/index.js"
   },
   "scripts": {
     "build": "tsup",

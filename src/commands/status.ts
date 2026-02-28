@@ -137,7 +137,7 @@ export async function thoughtsStatusCommand(
     if (!config) {
       console.error(
         chalk.red(
-          'Error: Thoughts not configured. Run "thoughts-cli init" first.',
+          'Error: Thoughts not configured. Run "thoughts init" first.',
         ),
       );
       process.exit(1);
@@ -209,7 +209,7 @@ export async function thoughtsStatusCommand(
       changes.forEach((change) => console.log(change));
       console.log("");
       console.log(
-        chalk.gray('Run "thoughts-cli sync" to commit these changes'),
+        chalk.gray('Run "thoughts sync" to commit these changes'),
       );
     } else {
       console.log(chalk.green("No uncommitted changes"));
